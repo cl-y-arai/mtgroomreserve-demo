@@ -113,6 +113,36 @@ input:focus, select:focus {
   border: 1.5px solid var(--color-accent);
   box-shadow: 0 0 0 2px #e7d6f7;
 }
+input[type="date"] {
+  padding: 10px 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #faf9f6;
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+  font-family: 'Poppins', 'Noto Sans JP', sans-serif;
+  margin-bottom: 4px;
+}
+input[type="date"]:focus {
+  border: 1.5px solid var(--color-accent);
+  box-shadow: 0 0 0 2px #e7d6f7;
+}
+select {
+  padding: 10px 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #faf9f6;
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+  font-family: 'Poppins', 'Noto Sans JP', sans-serif;
+  margin-bottom: 4px;
+}
+select:focus {
+  border: 1.5px solid var(--color-accent);
+  box-shadow: 0 0 0 2px #e7d6f7;
+}
 button[type="submit"], #downloadCsvBtn {
   background: linear-gradient(90deg, var(--color-btn) 60%, var(--color-accent) 100%);
   color: var(--color-btn-text);
