@@ -103,5 +103,5 @@ document.getElementById('downloadCsvBtn').addEventListener('click', function() {
   URL.revokeObjectURL(url);
 });
 
-// 初期選択
+// 初期選択をA→Dも選択可能に
 update_room_selection('A'); 
