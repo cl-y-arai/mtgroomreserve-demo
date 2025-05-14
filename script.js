@@ -44,6 +44,25 @@ function generate_time_options(select) {
 generate_time_options(document.getElementById('startTime'));
 generate_time_options(document.getElementById('endTime'));
 
+// flatpickrでカレンダー＋時刻ピッカー（30分単位）
+flatpickr.localize(flatpickr.l10ns.ja);
+flatpickr("#startDateTime", {
+  enableTime: true,
+  dateFormat: "Y-m-d H:i",
+  time_24hr: true,
+  minuteIncrement: 30,
+  locale: "ja",
+  allowInput: true
+});
+flatpickr("#endDateTime", {
+  enableTime: true,
+  dateFormat: "Y-m-d H:i",
+  time_24hr: true,
+  minuteIncrement: 30,
+  locale: "ja",
+  allowInput: true
+});
+
 // 予約データ格納用
 let reservations = [];
 
@@ -52,19 +71,14 @@ const reserveForm = document.getElementById('reserveForm');
 reserveForm.addEventListener('submit', function(e) {
   e.preventDefault();
   const room = roomSelect.value;
-  const startDate = document.getElementById('startDate').value;
-  const startTime = document.getElementById('startTime').value;
-  const endDate = document.getElementById('endDate').value;
-  const endTime = document.getElementById('endTime').value;
+  const start = document.getElementById('startDateTime').value;
+  const end = document.getElementById('endDateTime').value;
   const reserver = document.getElementById('reserver').value.trim();
 
-  if (!room || !startDate || !startTime || !endDate || !endTime || !reserver) {
+  if (!room || !start || !end || !reserver) {
     alert('すべての項目を入力してください。');
     return;
   }
-  // 日付＋時刻を結合して比較
-  const start = `${startDate}T${startTime}`;
-  const end = `${endDate}T${endTime}`;
   if (start >= end) {
     alert('終了日時は開始日時より後にしてください。');
     return;
@@ -74,9 +88,6 @@ reserveForm.addEventListener('submit', function(e) {
   alert('予約が完了しました！');
   reserveForm.reset();
   update_room_selection('A');
-  // デフォルト値を再設定
-  generate_time_options(document.getElementById('startTime'));
-  generate_time_options(document.getElementById('endTime'));
 });
 
 // CSVダウンロード
