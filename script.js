@@ -3,7 +3,7 @@ const roomImages = document.querySelectorAll('.room-image');
 const roomSelect = document.getElementById('roomSelect');
 let selectedRoom = 'A';
 
-function updateRoomSelection(room) {
+function update_room_selection(room) {
   selectedRoom = room;
   roomImages.forEach(img => {
     if (img.dataset.room === room) {
@@ -17,12 +17,12 @@ function updateRoomSelection(room) {
 
 roomImages.forEach(img => {
   img.addEventListener('click', () => {
-    updateRoomSelection(img.dataset.room);
+    update_room_selection(img.dataset.room);
   });
 });
 
 roomSelect.addEventListener('change', (e) => {
-  updateRoomSelection(e.target.value);
+  update_room_selection(e.target.value);
 });
 
 // 予約データ格納用
@@ -49,11 +49,11 @@ reserveForm.addEventListener('submit', function(e) {
   reservations.push({ room, start, end, reserver });
   alert('予約が完了しました！');
   reserveForm.reset();
-  updateRoomSelection('A');
+  update_room_selection('A');
 });
 
 // CSVダウンロード
-function convertToCSV(data) {
+function convert_to_csv(data) {
   const header = ['会議室','利用開始日時','利用終了日時','予約者名'];
   const rows = data.map(r => [r.room, r.start, r.end, r.reserver]);
   return [header, ...rows].map(row => row.map(cell => `"${cell.replace(/"/g, '""')}"`).join(',')).join('\r\n');
@@ -64,7 +64,7 @@ document.getElementById('downloadCsvBtn').addEventListener('click', function() {
     alert('予約データがありません。');
     return;
   }
-  const csv = convertToCSV(reservations);
+  const csv = convert_to_csv(reservations);
   const blob = new Blob([csv], { type: 'text/csv' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -77,4 +77,4 @@ document.getElementById('downloadCsvBtn').addEventListener('click', function() {
 });
 
 // 初期選択
-updateRoomSelection('A'); 
+update_room_selection('A'); 
