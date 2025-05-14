@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>会議室予約システム</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
 </head>
 <body>
   <main>
@@ -31,12 +28,14 @@
         </select>
       </label>
       <label>
-        利用開始日時：
-        <input type="text" id="startDateTime" class="datetime-picker" name="start_datetime" required autocomplete="off">
+        利用開始日：
+        <input type="date" id="startDate" name="start_date" required>
+        <select id="startTime" name="start_time" required></select>
       </label>
       <label>
-        利用終了日時：
-        <input type="text" id="endDateTime" class="datetime-picker" name="end_datetime" required autocomplete="off">
+        利用終了日：
+        <input type="date" id="endDate" name="end_date" required>
+        <select id="endTime" name="end_time" required></select>
       </label>
       <label>
         予約者名：
