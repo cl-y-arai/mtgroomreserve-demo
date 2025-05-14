@@ -47,6 +47,21 @@ generate_time_options(document.getElementById('endTime'));
 // 予約データ格納用
 let reservations = [];
 
+function render_reservation_list() {
+  const listDiv = document.getElementById('reservationList');
+  if (!listDiv) return;
+  if (reservations.length === 0) {
+    listDiv.innerHTML = '<span>予約情報はありません。</span>';
+    return;
+  }
+  let html = '<ul>';
+  reservations.forEach((r, i) => {
+    html += `<li>${i + 1}. [${r.room}] ${r.start} ～ ${r.end} / ${r.reserver}</li>`;
+  });
+  html += '</ul>';
+  listDiv.innerHTML = html;
+}
+
 // 予約フォーム送信
 const reserveForm = document.getElementById('reserveForm');
 reserveForm.addEventListener('submit', function(e) {
@@ -74,6 +89,7 @@ reserveForm.addEventListener('submit', function(e) {
   alert('予約が完了しました！');
   reserveForm.reset();
   update_room_selection('A');
+  render_reservation_list();
   // デフォルト値を再設定
   generate_time_options(document.getElementById('startTime'));
   generate_time_options(document.getElementById('endTime'));
@@ -102,6 +118,9 @@ document.getElementById('downloadCsvBtn').addEventListener('click', function() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 });
+
+// 初期表示
+render_reservation_list();
 
 // 初期選択をA→Dも選択可能に
 update_room_selection('A'); 
