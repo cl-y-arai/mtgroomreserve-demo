@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会議室予約システム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>会議室予約システム</h1>
+    <div class="room-images">
+      <div class="room-image" data-room="A">
+        <img src="https://www.creationline.com/tech-blog/cms_x3GWkuX/wp-content/uploads/2024/04/main1.webp" alt="会議室A">
+        <span>会議室A</span>
+      </div>
+      <div class="room-image" data-room="B">
+        <img src="https://www.creationline.com/tech-blog/cms_x3GWkuX/wp-content/uploads/2024/04/main4.webp" alt="会議室B">
+        <span>会議室B</span>
+      </div>
+    </div>
+    <form id="reserveForm">
+      <label>
+        会議室選択：
+        <select id="roomSelect" name="room">
+          <option value="A">会議室A</option>
+          <option value="B">会議室B</option>
+        </select>
+      </label>
+      <label>
+        利用開始日時：
+        <input type="datetime-local" id="startTime" name="start" required>
+      </label>
+      <label>
+        利用終了日時：
+        <input type="datetime-local" id="endTime" name="end" required>
+      </label>
+      <label>
+        予約者名：
+        <input type="text" id="reserver" name="reserver" required>
+      </label>
+      <button type="submit">予約</button>
+    </form>
+    <button id="downloadCsvBtn">CSVダウンロード</button>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html> 
